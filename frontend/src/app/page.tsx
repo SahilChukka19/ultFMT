@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Gauge, Calculator, GitCompare, Text, Code2, Settings } from "lucide-react";
+import { ArrowRight, Gauge, Calculator, GitCompare, Text, Settings } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const featuredTools = [
@@ -33,13 +33,8 @@ const featuredTools = [
     href: "/mcp-config-validator",
     icon: Settings,
   },
-  {
-    title: "JSON Formatter",
-    description: "Format, validate, and minify JSON payloads intended for API requests or model fine-tuning.",
-    href: "/json-formatter-validator",
-    icon: Code2,
-  },
 ];
+
 
 export default function Home() {
   return (

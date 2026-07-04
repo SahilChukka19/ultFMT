@@ -29,16 +29,23 @@ const categories = [
       { name: "Context Checker", href: "/context-window-checker" }
     ]
   },
-  { name: "Dataset Health", href: "/dataset-health", icon: Activity },
+  { 
+    name: "ML Studio", 
+    icon: Activity,
+    subItems: [
+      { name: "Dataset Health", href: "/dataset-health" },
+      { name: "Feature Intelligence", href: "/feature-intelligence" },
+      { name: "Learning Curve Plotter", href: "/learning-curve-plotter" }
+    ]
+  },
   { name: "RAG Playground", href: "/rag-playground", icon: Database },
-  { name: "JSON & Data", href: "/json-formatter-validator", icon: Code2 },
   { name: "Cost Analysis", href: "/ai-cost-calculator", icon: Calculator },
   { name: "Documentation", href: "#", icon: BookOpen },
 ];
 
 export function Sidebar() {
   const pathname = usePathname();
-  const [expanded, setExpanded] = useState<Record<string, boolean>>({ "MCP Studio": true });
+  const [expanded, setExpanded] = useState<Record<string, boolean>>({ "MCP Studio": true, "ML Studio": true });
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
   return (

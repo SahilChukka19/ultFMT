@@ -8,6 +8,7 @@ from typing import Optional
 import re
 import math
 from routers.metadata import load_json_file
+from services.feature_intelligence import compute_feature_intelligence
 
 router = APIRouter(prefix="/api/v1/tools", tags=["tools"])
 
@@ -157,103 +158,6 @@ def extract_variables(request: VariableExtractorRequest):
         "count": len(variables)
     }
 
-import json
-
-class JsonValidatorRequest(BaseModel):
-    json_string: str
-
-def get_json_error_solution(error_msg: str) -> str:
-    msg = error_msg.lower()
-    if "expecting value" in msg:
-        return "You might have a trailing comma before a closing bracket/brace, or you assigned an empty value to a key."
-    elif "expecting property name enclosed in double quotes" in msg:
-        return "Ensure all your keys are wrapped in double quotes (e.g. \"key\": \"value\"). Single quotes or unquoted keys are invalid in JSON."
-    elif "expecting ',' delimiter" in msg:
-        return "You are likely missing a comma between two properties in an object or elements in an array."
-    elif "extra data" in msg:
-        return "There seems to be extra content outside the main JSON object or array. Ensure the file contains only one root element."
-    elif "invalid control character" in msg:
-        return "You have an unescaped control character (like a newline or tab) inside a string. Use \\n or \\t instead."
-    elif "unterminated string" in msg:
-        return "A string was started with a double quote but never closed."
-    return "Review the syntax near the reported line. Ensure brackets and braces are balanced and quotes are properly escaped."
-
-def attempt_auto_fix_json(json_str: str) -> Optional[str]:
-    # Helper to format and verify
-    def verify(s):
-        try:
-            return json.dumps(json.loads(s), indent=2)
-        except:
-            return None
-
-    try_str = json_str
-    
-    # 1. Unquoted keys
-    try_str = re.sub(r'(?m)^(\s*)([a-zA-Z_][a-zA-Z0-9_]*)(\s*:)', r'\1"\2"\3', try_str)
-    # 2. Single quotes
-    try_str = try_str.replace("'", '"')
-    # 3. Python booleans
-    try_str = re.sub(r'\bTrue\b', 'true', try_str)
-    try_str = re.sub(r'\bFalse\b', 'false', try_str)
-    # 4. Missing commas
-    try_str = re.sub(r'(["\]}\w])(\s*\n\s*")', r'\1,\2', try_str)
-    # 5. Empty value assignment (e.g. "key": } -> "key": null })
-    try_str = re.sub(r':(\s*[\]}])', r': null\1', try_str)
-    # 6. Trailing commas
-    try_str = re.sub(r",(\s*[\]}])", r"\1", try_str)
-    
-    # 7. Missing closing braces
-    open_braces = try_str.count('{')
-    close_braces = try_str.count('}')
-    if open_braces > close_braces:
-        try_str += '\n' + '}' * (open_braces - close_braces)
-        
-    open_brackets = try_str.count('[')
-    close_brackets = try_str.count(']')
-    if open_brackets > close_brackets:
-        try_str += '\n' + ']' * (open_brackets - close_brackets)
-
-    if verify(try_str): return verify(try_str)
-
-    return None
-
-@router.post("/json-validator")
-def validate_json(request: JsonValidatorRequest):
-    try:
-        parsed = json.loads(request.json_string)
-        formatted = json.dumps(parsed, indent=2)
-        return {
-            "is_valid": True,
-            "formatted": formatted,
-            "error": None,
-            "line": None,
-            "col": None,
-            "snippet": None,
-            "solution": None,
-            "auto_fixed_json": None
-        }
-    except json.JSONDecodeError as e:
-        lines = request.json_string.splitlines()
-        start_line = max(0, e.lineno - 2)
-        end_line = min(len(lines), e.lineno + 1)
-        
-        snippet_lines = []
-        for i in range(start_line, end_line):
-            prefix = ">> " if i + 1 == e.lineno else "   "
-            snippet_lines.append(f"{prefix}{i+1} | {lines[i]}")
-            
-        snippet = "\n".join(snippet_lines)
-        
-        return {
-            "is_valid": False,
-            "formatted": None,
-            "error": str(e),
-            "line": e.lineno,
-            "col": e.colno,
-            "snippet": snippet,
-            "solution": get_json_error_solution(e.msg),
-            "auto_fixed_json": attempt_auto_fix_json(request.json_string)
-        }
 
 @router.post("/dataset-health")
 async def analyze_dataset(file: UploadFile = File(...), target_column: Optional[str] = Form(None)):
@@ -632,5 +536,39 @@ async def analyze_dataset(file: UploadFile = File(...), target_column: Optional[
                 }
             }
         }
+    except Exception as e:
+        return {"is_valid": False, "error": str(e)}
+
+
+@router.post("/feature-intelligence")
+async def feature_intelligence(
+    file: UploadFile = File(...),
+    target_column: Optional[str] = Form(None)
+):
+    try:
+        content = await file.read()
+
+        # Security: file size cap
+        if len(content) > 5 * 1024 * 1024:
+            return {"is_valid": False, "error": "File size exceeds the 5MB limit."}
+
+        # Security: filetype whitelist
+        filename = (file.filename or "").lower()
+        if filename.endswith(".csv"):
+            df = pd.read_csv(io.BytesIO(content))
+        elif filename.endswith((".xls", ".xlsx")):
+            df = pd.read_excel(io.BytesIO(content))
+        else:
+            return {"is_valid": False, "error": "Only CSV and Excel files are supported."}
+
+        if df.empty:
+            return {"is_valid": False, "error": "The dataset is empty."}
+
+        results = compute_feature_intelligence(df, target_column)
+        if "error" in results:
+            return {"is_valid": False, "error": results["error"]}
+
+        return {"is_valid": True, "results": results}
+
     except Exception as e:
         return {"is_valid": False, "error": str(e)}

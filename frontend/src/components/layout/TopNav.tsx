@@ -12,9 +12,10 @@ const searchItems = [
   { name: "Token Estimator", href: "/token-estimator", icon: PenTool, category: "Prompt Tools" },
   { name: "Prompt Diff", href: "/prompt-diff", icon: PenTool, category: "Prompt Tools" },
   { name: "Context Checker", href: "/context-window-checker", icon: PenTool, category: "Prompt Tools" },
-  { name: "Dataset Health", href: "/dataset-health", icon: Activity, category: "Data Tools" },
+  { name: "Dataset Health", href: "/dataset-health", icon: Activity, category: "ML Studio" },
+  { name: "Feature Intelligence", href: "/feature-intelligence", icon: Activity, category: "ML Studio" },
+  { name: "Learning Curve Plotter", href: "/learning-curve-plotter", icon: Activity, category: "ML Studio" },
   { name: "RAG Playground", href: "/rag-playground", icon: Database, category: "Data Tools" },
-  { name: "JSON Formatter", href: "/json-formatter-validator", icon: Code2, category: "Developer Utilities" },
   { name: "Cost Analysis", href: "/ai-cost-calculator", icon: Calculator, category: "Developer Utilities" },
 ];
 

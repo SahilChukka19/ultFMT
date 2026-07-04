@@ -62,12 +62,17 @@ export async function extractVariables(prompt: string) {
   return res.json();
 }
 
-export async function validateJson(jsonString: string) {
-  const res = await fetch(`${API_BASE_URL}/tools/json-validator`, {
+export async function analyzeFeatures(file: File, targetColumn?: string) {
+  const formData = new FormData();
+  formData.append("file", file);
+  if (targetColumn) formData.append("target_column", targetColumn);
+  const res = await fetch(`${API_BASE_URL}/tools/feature-intelligence`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ json_string: jsonString }),
+    body: formData,
   });
-  if (!res.ok) throw new Error("Failed to validate JSON");
+  if (!res.ok) {
+    const err = await res.json().catch(() => null);
+    throw new Error(err?.error || "Failed to analyze features");
+  }
   return res.json();
 }
