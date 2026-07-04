@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { X, Moon, Sun, Monitor, AlignLeft, Type, Maximize } from "lucide-react";
-import { useTheme } from "next-themes";
+import { X, AlignLeft, Type, Maximize } from "lucide-react";
 import { useSettings } from "@/contexts/SettingsContext";
 
 interface SettingsModalProps {
@@ -11,13 +10,7 @@ interface SettingsModalProps {
 }
 
 export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
-  const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
   const { uiDensity, setUIDensity, tabSize, setTabSize, wordWrap, setWordWrap, fontSize, setFontSize } = useSettings();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   if (!isOpen) return null;
 
@@ -46,39 +39,10 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
         {/* Content */}
         <div className="p-6 overflow-y-auto flex flex-col gap-8">
           
-          {/* Theme & Appearance */}
+          {/* Appearance */}
           <section>
             <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">Appearance</h3>
             <div className="grid gap-4">
-              
-              <div className="flex items-center justify-between p-4 rounded-lg border border-slate-200 bg-slate-50/50">
-                <div>
-                  <div className="font-medium text-slate-800">Theme</div>
-                  <div className="text-sm text-slate-500 mt-1">Select your preferred color scheme</div>
-                </div>
-                {mounted && (
-                  <div className="flex bg-slate-200/50 p-1 rounded-lg">
-                    <button 
-                      onClick={() => setTheme("light")}
-                      className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium transition-all ${theme === 'light' ? 'bg-white shadow-sm text-slate-900' : 'text-slate-500 hover:text-slate-700'}`}
-                    >
-                      <Sun className="w-4 h-4" /> Light
-                    </button>
-                    <button 
-                      onClick={() => setTheme("dark")}
-                      className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium transition-all ${theme === 'dark' ? 'bg-white shadow-sm text-slate-900' : 'text-slate-500 hover:text-slate-700'}`}
-                    >
-                      <Moon className="w-4 h-4" /> Dark
-                    </button>
-                    <button 
-                      onClick={() => setTheme("system")}
-                      className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium transition-all ${theme === 'system' ? 'bg-white shadow-sm text-slate-900' : 'text-slate-500 hover:text-slate-700'}`}
-                    >
-                      <Monitor className="w-4 h-4" /> System
-                    </button>
-                  </div>
-                )}
-              </div>
 
               <div className="flex items-center justify-between p-4 rounded-lg border border-slate-200 bg-slate-50/50">
                 <div>

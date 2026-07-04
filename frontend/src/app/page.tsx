@@ -115,9 +115,9 @@ export default function Home() {
         <div className="max-w-[1200px] mx-auto px-8 flex justify-between items-center">
           <p>© 2024 ultFMT. Engineered for performance.</p>
           <div className="flex gap-6">
-            <Link href="#" className="hover:text-slate-900">PRIVACY POLICY</Link>
-            <Link href="#" className="hover:text-slate-900">TERMS OF SERVICE</Link>
-            <a href="https://github.com/your-username/your-repo" target="_blank" rel="noopener noreferrer" className="hover:text-slate-900">GITHUB</a>
+            <Link href="/privacy-policy" className="hover:text-slate-900">PRIVACY POLICY</Link>
+            <Link href="/terms-of-service" className="hover:text-slate-900">TERMS OF SERVICE</Link>
+            <a href="https://github.com/SahilChukka19/ultFMT" target="_blank" rel="noopener noreferrer" className="hover:text-slate-900">GITHUB</a>
           </div>
         </div>
       </footer>

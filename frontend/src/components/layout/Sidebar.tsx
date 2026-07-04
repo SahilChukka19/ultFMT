@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { SettingsModal } from "./SettingsModal";
 
-const GITHUB_URL = "https://github.com/your-username/your-repo"; // <-- UPDATE THIS LINK
+const GITHUB_URL = "https://github.com/SahilChukka19/ultFMT";
 
 const categories = [
   { name: "All Tools", href: "/", icon: LayoutGrid },
