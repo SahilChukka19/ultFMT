@@ -36,9 +36,9 @@ export default function VariableExtractorPage() {
       description="Automatically detect and extract dynamic variables from your prompt templates."
       actions={actions}
     >
-      <div className="flex h-full w-full">
+      <div className="flex flex-col lg:flex-row flex-1 w-full">
         {/* Left Pane - Editor */}
-        <div className="flex-1 flex flex-col border-r border-slate-200">
+        <div className="flex-1 flex flex-col min-h-[400px] lg:min-h-0 border-b lg:border-b-0 lg:border-r border-slate-200">
           <div className="flex items-center justify-between px-4 py-2 border-b border-slate-200 bg-slate-50 text-xs font-semibold text-slate-500">
              <div className="flex items-center gap-2">
                <Code className="h-3.5 w-3.5" />
@@ -49,7 +49,7 @@ export default function VariableExtractorPage() {
                UTF-8
              </div>
           </div>
-          <div className="flex-1 bg-white">
+          <div className="flex-1 flex flex-col bg-white">
             <CodeEditor
               language="text"
               value={prompt}
@@ -59,7 +59,7 @@ export default function VariableExtractorPage() {
         </div>
         
         {/* Right Pane - Results */}
-        <div className="w-[350px] flex flex-col bg-slate-50">
+        <div className="w-full lg:w-[350px] flex flex-col bg-slate-50">
           <div className="flex items-center px-4 py-2 border-b border-slate-200 bg-slate-50 text-xs font-semibold text-slate-500">
              <CheckSquare className="h-3.5 w-3.5 mr-2" />
              ANALYSIS RESULTS

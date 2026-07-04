@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutGrid, FileText, Code2, PenTool, Calculator, BookOpen, Send, Settings, HelpCircle, Sparkles, Code, ChevronDown, ChevronRight, Database, Activity } from "lucide-react";
+import { LayoutGrid, FileText, Code2, PenTool, Calculator, BookOpen, Send, Settings, HelpCircle, Sparkles, Code, ChevronDown, ChevronRight, Database, Activity, ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { SettingsModal } from "./SettingsModal";
@@ -42,14 +42,14 @@ const categories = [
   { name: "Cost Analysis", href: "/ai-cost-calculator", icon: Calculator },
 ];
 
-export function Sidebar() {
+export function SidebarContent() {
   const pathname = usePathname();
   const [expanded, setExpanded] = useState<Record<string, boolean>>({ "MCP Studio": true, "ML Studio": true });
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
   return (
-    <div className="flex flex-col h-full w-[280px] border-r border-slate-200 bg-slate-50 text-slate-800">
-      <div className="h-16 flex items-center px-6 border-b border-slate-200">
+    <>
+      <div className="h-16 flex items-center px-6 border-b border-slate-200 shrink-0">
         <Link href="/" className="flex items-center gap-2">
           <span className="text-xl font-bold tracking-tight text-slate-900">ultFMT</span>
         </Link>
@@ -136,6 +136,14 @@ export function Sidebar() {
           </Button>
         </a>
         <nav className="mt-4 grid gap-1">
+          <Link href="/docs" className="flex md:hidden items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100">
+            <BookOpen className="h-4 w-4" />
+            Docs
+          </Link>
+          <a href="https://tools.ultfmt.com/" target="_blank" rel="noopener noreferrer" className="flex md:hidden items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100">
+            <ExternalLink className="h-4 w-4" />
+            More Tools
+          </a>
           <button 
             onClick={() => setIsSettingsOpen(true)} 
             className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100"
@@ -151,6 +159,14 @@ export function Sidebar() {
       </div>
 
       <SettingsModal isOpen={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} />
+    </>
+  );
+}
+
+export function Sidebar() {
+  return (
+    <div className="hidden md:flex flex-col h-full w-[280px] border-r border-slate-200 bg-slate-50 text-slate-800 shrink-0">
+      <SidebarContent />
     </div>
   );
 }

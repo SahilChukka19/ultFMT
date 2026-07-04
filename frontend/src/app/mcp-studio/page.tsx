@@ -94,9 +94,9 @@ export default function MCPStudioPage() {
         </div>
       }
     >
-      <div className="flex h-full w-full">
+      <div className="flex flex-col lg:flex-row flex-1 w-full">
         {/* Left Pane - Builder */}
-        <div className="w-[45%] flex flex-col border-r border-slate-200 bg-slate-50 overflow-auto">
+        <div className="w-full lg:w-[45%] flex flex-col border-b lg:border-b-0 lg:border-r border-slate-200 bg-slate-50 lg:overflow-auto">
            <div className="p-6">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-sm font-bold text-slate-700 uppercase tracking-wider">Server Registry</h3>
@@ -247,7 +247,7 @@ export default function MCPStudioPage() {
         {/* Right Pane - Visualizer & JSON Output */}
         <div className="flex-1 flex flex-col bg-slate-50 min-w-0">
            {/* Top Half: Visualizer */}
-           <div className="h-[60%] border-b border-slate-200 flex flex-col bg-slate-50 relative min-h-0">
+           <div className="min-h-[400px] lg:min-h-0 lg:h-[60%] border-b border-slate-200 flex flex-col bg-slate-50 relative min-h-0">
              <div className="absolute top-4 right-4 z-20 flex items-center gap-2 bg-white/80 backdrop-blur border border-slate-200 px-3 py-1.5 rounded-md shadow-sm">
                 <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Client:</span>
                 <select 
@@ -314,7 +314,7 @@ export default function MCPStudioPage() {
            </div>
            
            {/* Bottom Half */}
-           <div className="flex-1 flex flex-col bg-[#1e1e1e] text-slate-300 relative min-h-0">
+           <div className="min-h-[300px] lg:min-h-0 flex-1 flex flex-col bg-[#1e1e1e] text-slate-300 relative">
              <div className="flex items-center justify-between px-4 py-2 border-b border-slate-700 bg-[#252526]">
                <div className="text-xs font-semibold uppercase tracking-wider flex items-center gap-2 text-slate-400">
                  <CheckCircle2 className="h-3.5 w-3.5 text-green-500" />

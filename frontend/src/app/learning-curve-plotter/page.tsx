@@ -227,10 +227,10 @@ export default function LearningCurvePlotterPage() {
       title="Learning Curve Plotter"
       description="Upload a training log CSV and instantly visualize loss, accuracy, and other metrics over epochs."
     >
-      <div className="flex h-full w-full bg-slate-50 overflow-hidden">
+      <div className="flex flex-col lg:flex-row flex-1 w-full bg-slate-50 overflow-visible lg:overflow-hidden">
 
         {/* Left Pane */}
-        <div className="w-80 flex-shrink-0 flex flex-col border-r border-slate-200 bg-white">
+        <div className="w-full lg:w-80 flex-shrink-0 flex flex-col border-b lg:border-b-0 lg:border-r border-slate-200 bg-white">
           <div className="flex items-center px-5 py-3 border-b border-slate-100 bg-slate-50/50">
             <Settings2 className="h-4 w-4 mr-2 text-slate-500" />
             <h2 className="text-xs font-bold text-slate-600 uppercase tracking-wider">Configuration</h2>

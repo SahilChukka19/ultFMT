@@ -3,8 +3,10 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
-import { Search, Command, LayoutGrid, FileText, Code2, PenTool, Calculator, BookOpen, Send, Settings, Sparkles, Database, Activity, ExternalLink } from "lucide-react";
+import { Menu, Search, Command, LayoutGrid, FileText, Code2, PenTool, Calculator, BookOpen, Send, Settings, Sparkles, Database, Activity, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetHeader } from "@/components/ui/sheet";
+import { SidebarContent } from "./Sidebar";
 
 const searchItems = [
   { name: "Visual Builder", href: "/mcp-studio", icon: Sparkles, category: "MCP Studio" },
@@ -22,10 +24,16 @@ const searchItems = [
 export function TopNav() {
   const [query, setQuery] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const pathname = usePathname();
+
+  // Close mobile sheet on route change
+  useEffect(() => {
+    setIsSheetOpen(false);
+  }, [pathname]);
 
   // Keyboard shortcut Ctrl+K / Cmd+K
   useEffect(() => {
@@ -67,9 +75,24 @@ export function TopNav() {
       );
 
   return (
-    <header className="h-16 border-b bg-slate-50 px-8 flex items-center justify-between relative z-40">
-      <div className="flex items-center gap-12 flex-1">
+    <header className="h-16 border-b bg-slate-50 px-4 md:px-8 flex items-center justify-between relative z-40">
+      <div className="flex items-center gap-4 md:gap-12 flex-1">
         
+        <div className="md:hidden">
+          <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
+            <SheetTrigger className="inline-flex items-center justify-center rounded-md text-sm font-medium hover:bg-slate-100 hover:text-slate-900 h-9 w-9 -ml-2">
+              <Menu className="h-5 w-5" />
+              <span className="sr-only">Toggle sidebar</span>
+            </SheetTrigger>
+            <SheetContent side="left" className="w-[280px] p-0 flex flex-col bg-slate-50">
+              <SheetHeader className="sr-only">
+                <SheetTitle>Navigation Menu</SheetTitle>
+              </SheetHeader>
+              <SidebarContent />
+            </SheetContent>
+          </Sheet>
+        </div>
+
         <div className="relative group max-w-sm w-full">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
             <Search className="h-4 w-4 text-slate-400 group-focus-within:text-slate-600" />

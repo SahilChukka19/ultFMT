@@ -104,7 +104,11 @@ export default function Home() {
       
       <footer className="border-t py-8 text-center text-sm text-slate-500">
         <div className="max-w-[1200px] mx-auto px-8 flex justify-between items-center">
-          <p>© 2026 ultFMT. Engineered for performance.</p>
+          <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
+            <span>© 2026 ultFMT. Engineered for performance.</span>
+            <span className="hidden sm:inline text-slate-300">|</span>
+            <span>Made with <span className="text-red-500">❤️</span> by Sahil Chukka</span>
+          </div>
           <div className="flex gap-6">
             <Link href="/privacy-policy" className="hover:text-slate-900">PRIVACY POLICY</Link>
             <Link href="/terms-of-service" className="hover:text-slate-900">TERMS OF SERVICE</Link>

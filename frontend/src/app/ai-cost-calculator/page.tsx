@@ -52,7 +52,7 @@ export default function CostCalculatorPage() {
       description="Estimate your monthly usage costs across various AI models based on token throughput and request frequency."
       actions={actions}
     >
-      <div className="flex h-full w-full">
+      <div className="flex flex-col lg:flex-row flex-1 w-full">
         {/* Left Pane - Config Form */}
         <div className="flex-1 flex flex-col border-r border-slate-200 bg-white">
           <div className="flex items-center px-4 py-2 border-b border-slate-200 bg-slate-50 text-xs font-semibold text-slate-500">
