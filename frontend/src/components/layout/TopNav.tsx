@@ -2,8 +2,8 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { Search, Command, LayoutGrid, FileText, Code2, PenTool, Calculator, BookOpen, Send, Settings, Sparkles, Database, Activity } from "lucide-react";
+import { useRouter, usePathname } from "next/navigation";
+import { Search, Command, LayoutGrid, FileText, Code2, PenTool, Calculator, BookOpen, Send, Settings, Sparkles, Database, Activity, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const searchItems = [
@@ -25,6 +25,7 @@ export function TopNav() {
   const inputRef = useRef<HTMLInputElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
+  const pathname = usePathname();
 
   // Keyboard shortcut Ctrl+K / Cmd+K
   useEffect(() => {
@@ -120,8 +121,11 @@ export function TopNav() {
         </div>
 
         <nav className="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-500">
-          <Link href="/" className="transition-colors hover:text-slate-900 border-b-2 border-slate-900 text-slate-900 pb-5 pt-5">Tools</Link>
-          <Link href="/docs" className="transition-colors hover:text-slate-900">Docs</Link>
+          <Link href="/" className={`transition-colors hover:text-slate-900 pb-5 pt-5 ${pathname === "/" ? "border-b-2 border-slate-900 text-slate-900" : ""}`}>Tools</Link>
+          <Link href="/docs" className={`transition-colors hover:text-slate-900 pb-5 pt-5 ${pathname === "/docs" ? "border-b-2 border-slate-900 text-slate-900" : ""}`}>Docs</Link>
+          <a href="https://tools.ultfmt.com/" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-slate-900 flex items-center gap-1.5 pb-5 pt-5">
+            More Tools <ExternalLink className="h-3.5 w-3.5" />
+          </a>
         </nav>
       </div>
     </header>

@@ -104,7 +104,7 @@ export default function Home() {
       
       <footer className="border-t py-8 text-center text-sm text-slate-500">
         <div className="max-w-[1200px] mx-auto px-8 flex justify-between items-center">
-          <p>© 2024 ultFMT. Engineered for performance.</p>
+          <p>© 2026 ultFMT. Engineered for performance.</p>
           <div className="flex gap-6">
             <Link href="/privacy-policy" className="hover:text-slate-900">PRIVACY POLICY</Link>
             <Link href="/terms-of-service" className="hover:text-slate-900">TERMS OF SERVICE</Link>
