@@ -4,7 +4,7 @@
 
 ![ultFMT Preview](https://via.placeholder.com/1200x600.png?text=ultFMT+-+Developer+Utilities+for+the+AI+Era)
 
-**[Live Website](https://ultfmt.com)** | **[Report an Issue](https://github.com/SahilChukka19/ultFMT/issues)** | **[Submit a Tool Idea](https://github.com/SahilChukka19/ultFMT/issues/new)**
+**[Live Website](https://ultfmt.com)** | **[Report an Issue](https://github.com/SahilChukka19/ultFMT/issues/new)** | **[Submit a Tool Idea](https://github.com/SahilChukka19/ultFMT/issues/new)**
 
 ---
 
