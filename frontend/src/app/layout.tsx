@@ -10,6 +10,9 @@ const font = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "ultFMT",
   description: "Developer Utilities for the AI Era",
+  verification: {
+    google: "PD3X0EY5HnodzAEHD-q7US3e2yBnC8JG1y2ig3cBWFc",
+  },
 };
 
 export default function RootLayout({
