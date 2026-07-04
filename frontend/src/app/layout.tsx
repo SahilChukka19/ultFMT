@@ -14,6 +14,9 @@ export const metadata: Metadata = {
   verification: {
     google: "PD3X0EY5HnodzAEHD-q7US3e2yBnC8JG1y2ig3cBWFc",
   },
+  other: {
+    "google-adsense-account": "ca-pub-5146600005266494",
+  },
 };
 
 export default function RootLayout({
@@ -24,12 +27,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <Script
+        <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5146600005266494"
           crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
+        ></script>
       </head>
       <body className={`${font.className} min-h-full flex flex-col font-sans antialiased`}>
         <ThemeProvider
