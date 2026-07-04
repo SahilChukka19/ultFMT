@@ -121,7 +121,7 @@ export function TopNav() {
 
         <nav className="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-500">
           <Link href="/" className="transition-colors hover:text-slate-900 border-b-2 border-slate-900 text-slate-900 pb-5 pt-5">Tools</Link>
-          <Link href="#" className="transition-colors hover:text-slate-900">Docs</Link>
+          <Link href="/docs" className="transition-colors hover:text-slate-900">Docs</Link>
         </nav>
       </div>
     </header>

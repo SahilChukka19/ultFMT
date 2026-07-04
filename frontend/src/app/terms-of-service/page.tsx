@@ -80,12 +80,16 @@ export default function TermsOfServicePage() {
         </section>
 
         <section>
-          <h2 className="text-xl font-bold text-slate-800 mb-3">4. Intellectual Property</h2>
+          <h2 className="text-xl font-bold text-slate-800 mb-3">4. Intellectual Property & Open Source</h2>
           <p className="leading-relaxed">
-            The ultFMT name, logo, design, and underlying code are the intellectual property of the
-            project maintainer. You may not copy, reproduce, or redistribute the Service or its
-            source code without explicit written permission, except as permitted by the open-source
-            license governing the project (if any), which can be found in the project repository on GitHub.
+            ultFMT is an open-source project. The underlying source code is freely available in our 
+            GitHub repository and is governed by its respective open-source license (e.g., MIT License). 
+            You are free to view, copy, modify, and distribute the code in accordance with that license.
+          </p>
+          <p className="mt-3 leading-relaxed">
+            However, the &ldquo;ultFMT&rdquo; name, branding, and logos are the intellectual property of the 
+            project maintainer. You may not use them in a way that implies endorsement or affiliation 
+            if you choose to host your own modified instance of the project.
           </p>
           <p className="mt-3 leading-relaxed">
             Any data, files, or content you submit to the Service remains entirely yours. We claim

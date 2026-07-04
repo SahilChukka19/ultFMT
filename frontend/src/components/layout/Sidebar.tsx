@@ -40,7 +40,6 @@ const categories = [
   },
   { name: "RAG Playground", href: "/rag-playground", icon: Database },
   { name: "Cost Analysis", href: "/ai-cost-calculator", icon: Calculator },
-  { name: "Documentation", href: "#", icon: BookOpen },
 ];
 
 export function Sidebar() {
@@ -144,7 +143,7 @@ export function Sidebar() {
             <Settings className="h-4 w-4" />
             Settings
           </button>
-          <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100">
+          <a href={`${GITHUB_URL}/issues/new`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100">
             <HelpCircle className="h-4 w-4" />
             Support
           </a>

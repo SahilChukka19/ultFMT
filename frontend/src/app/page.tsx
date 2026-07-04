@@ -52,29 +52,20 @@ export default function Home() {
           </p>
           <div className="flex items-center gap-4">
             <Link
-              href="/token-estimator"
+              href="#tools"
               className="inline-flex h-12 items-center justify-center rounded-md bg-slate-900 px-8 text-sm font-medium text-white shadow transition-colors hover:bg-slate-900/90"
             >
               EXPLORE TOOLS
             </Link>
-            <Link
-              href="#categories"
-              className="inline-flex h-12 items-center justify-center rounded-md border border-slate-200 bg-white px-8 text-sm font-medium text-slate-900 shadow-sm transition-colors hover:bg-slate-100 hover:text-slate-900"
-            >
-              BROWSE CATEGORIES
-            </Link>
           </div>
         </div>
 
-        <section className="mb-20">
+        <section id="tools" className="mb-20 pt-8 scroll-mt-8">
           <div className="flex items-center justify-between mb-8">
             <div>
               <h2 className="text-2xl font-bold text-slate-900">Featured Tools</h2>
               <p className="text-slate-500 mt-1">Essential utilities for your daily AI engineering tasks.</p>
             </div>
-            <Link href="/" className="text-sm font-semibold text-slate-900 flex items-center gap-1 hover:underline">
-              VIEW ALL <ArrowRight className="h-4 w-4" />
-            </Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {featuredTools.map((tool) => (
