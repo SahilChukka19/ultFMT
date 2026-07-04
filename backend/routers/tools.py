@@ -256,7 +256,11 @@ async def analyze_dataset(file: UploadFile = File(...), target_column: Optional[
                         advice = "Most Frequent (Mode)"
                         reason = "Categorical Feature"
                     else:
-                        skewness = df[col].skew()
+                        try:
+                            skewness = df[col].skew()
+                        except Exception:
+                            skewness = float('nan')
+                            
                         if pd.isna(skewness):
                             advice = "Median"
                             reason = "Numeric (Unknown Skew)"
