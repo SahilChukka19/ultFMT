@@ -350,7 +350,7 @@ export default function LearningCurvePlotterPage() {
                   <YAxis tick={{ fontSize: 12 }} width={55} />
                   <Tooltip
                     contentStyle={{ fontSize: 12, borderRadius: 8, border: "1px solid #e2e8f0" }}
-                    formatter={(value: any, name: string) => [
+                    formatter={(value: any, name: any) => [
                       typeof value === "number" ? value.toFixed(4) : value,
                       name,
                     ]}
