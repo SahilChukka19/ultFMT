@@ -1,0 +1,46 @@
+{
+  "models": [
+    {
+      "id": "gpt-4-turbo",
+      "name": "GPT-4 Turbo",
+      "provider": "OpenAI",
+      "context_window": 128000,
+      "max_output_tokens": 4096
+    },
+    {
+      "id": "gpt-4o",
+      "name": "GPT-4o",
+      "provider": "OpenAI",
+      "context_window": 128000,
+      "max_output_tokens": 4096
+    },
+    {
+      "id": "gpt-3.5-turbo",
+      "name": "GPT-3.5 Turbo",
+      "provider": "OpenAI",
+      "context_window": 16385,
+      "max_output_tokens": 4096
+    },
+    {
+      "id": "claude-3-opus-20240229",
+      "name": "Claude 3 Opus",
+      "provider": "Anthropic",
+      "context_window": 200000,
+      "max_output_tokens": 4096
+    },
+    {
+      "id": "claude-3-sonnet-20240229",
+      "name": "Claude 3 Sonnet",
+      "provider": "Anthropic",
+      "context_window": 200000,
+      "max_output_tokens": 4096
+    },
+    {
+      "id": "claude-3-haiku-20240307",
+      "name": "Claude 3 Haiku",
+      "provider": "Anthropic",
+      "context_window": 200000,
+      "max_output_tokens": 4096
+    }
+  ]
+}
