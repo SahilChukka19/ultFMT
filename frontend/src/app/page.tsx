@@ -41,6 +41,7 @@ export default function Home() {
     <div className="flex flex-col min-h-full bg-white">
       <main className="flex-1 w-full max-w-[1200px] mx-auto px-8 py-16">
         <div className="mb-16 max-w-2xl">
+          <img src="/ultfmt_logo.svg" alt="ultFMT Logo" className="h-14 w-auto mb-10 object-contain" />
           <div className="inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold tracking-wide text-slate-800 uppercase mb-6">
             NEW: MCP VALIDATOR TOOL RELEASED
           </div>

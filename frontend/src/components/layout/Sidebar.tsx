@@ -12,16 +12,16 @@ const GITHUB_URL = "https://github.com/SahilChukka19/ultFMT";
 
 const categories = [
   { name: "All Tools", href: "/", icon: LayoutGrid },
-  { 
-    name: "MCP Studio", 
+  {
+    name: "MCP Studio",
     icon: Sparkles,
     subItems: [
       { name: "Visual Builder", href: "/mcp-studio" },
       { name: "MCP Validator", href: "/mcp-config-validator" }
     ]
   },
-  { 
-    name: "Prompt", 
+  {
+    name: "Prompt",
     icon: PenTool,
     subItems: [
       { name: "Token Estimator", href: "/token-estimator" },
@@ -29,8 +29,8 @@ const categories = [
       { name: "Context Checker", href: "/context-window-checker" }
     ]
   },
-  { 
-    name: "ML Studio", 
+  {
+    name: "ML Studio",
     icon: Activity,
     subItems: [
       { name: "Dataset Health", href: "/dataset-health" },
@@ -44,17 +44,17 @@ const categories = [
 
 export function SidebarContent() {
   const pathname = usePathname();
-  const [expanded, setExpanded] = useState<Record<string, boolean>>({ "MCP Studio": true, "ML Studio": true });
+  const [expanded, setExpanded] = useState<Record<string, boolean>>({});
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
   return (
     <>
       <div className="h-16 flex items-center px-6 border-b border-slate-200 shrink-0">
         <Link href="/" className="flex items-center gap-2">
-          <span className="text-xl font-bold tracking-tight text-slate-900">ultFMT</span>
+          <img src="/ultfmt_logo.svg" alt="ultFMT" className="h-10 w-auto object-contain" />
         </Link>
       </div>
-      
+
       <div className="flex-1 overflow-auto py-6 px-4">
         <div className="mb-4">
           <h4 className="text-[11px] font-bold tracking-widest text-slate-400 uppercase mb-3 px-2">
@@ -115,8 +115,8 @@ export function SidebarContent() {
                   href={category.href as string}
                   className={cn(
                     "flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium transition-colors",
-                    activeCondition 
-                      ? "bg-blue-100 text-blue-700 border-l-4 border-blue-600 rounded-l-none" 
+                    activeCondition
+                      ? "bg-blue-100 text-blue-700 border-l-4 border-blue-600 rounded-l-none"
                       : "text-slate-600 hover:bg-slate-100 hover:text-slate-900 border-l-4 border-transparent"
                   )}
                 >
@@ -144,8 +144,8 @@ export function SidebarContent() {
             <ExternalLink className="h-4 w-4" />
             More Tools
           </a>
-          <button 
-            onClick={() => setIsSettingsOpen(true)} 
+          <button
+            onClick={() => setIsSettingsOpen(true)}
             className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100"
           >
             <Settings className="h-4 w-4" />
