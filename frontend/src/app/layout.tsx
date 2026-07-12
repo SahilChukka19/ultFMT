@@ -11,6 +11,15 @@ const font = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "ultFMT",
   description: "Developer Utilities for the AI Era",
+  icons: {
+    icon: [
+      { url: "/ultfmt_logo_symbol.png", type: "image/png" },
+    ],
+    apple: [
+      { url: "/ultfmt_logo_symbol.png", type: "image/png" },
+    ],
+    shortcut: "/ultfmt_logo_symbol.png",
+  },
   verification: {
     google: "PD3X0EY5HnodzAEHD-q7US3e2yBnC8JG1y2ig3cBWFc",
   },
