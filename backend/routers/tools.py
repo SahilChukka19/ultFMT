@@ -167,9 +167,17 @@ async def analyze_dataset(file: UploadFile = File(...), target_column: Optional[
         
         # 1. Load data
         if filename.endswith(".csv"):
-            df = pd.read_csv(io.BytesIO(content))
+            try:
+                df = pd.read_csv(io.BytesIO(content))
+            except Exception as e:
+                return {"is_valid": False, "error": f"Failed to parse CSV file. Make sure it is a valid, unencrypted CSV. Details: {str(e)}"}
         elif filename.endswith((".xls", ".xlsx")):
-            df = pd.read_excel(io.BytesIO(content))
+            try:
+                df = pd.read_excel(io.BytesIO(content))
+            except ImportError:
+                return {"is_valid": False, "error": "Excel file support requires the 'openpyxl' package. The server is missing this dependency — please contact support."}
+            except Exception as e:
+                return {"is_valid": False, "error": f"Failed to read the Excel file. It may be corrupted or password-protected. Details: {str(e)}"}
         else:
             return {"is_valid": False, "error": "Only CSV and Excel files are supported."}
             
